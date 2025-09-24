@@ -7,6 +7,24 @@ body {
   background-color: #fff; 
 }
 
+body.dark {
+  background-color: #333;
+  color: #fff
+}
+
+body.dark .main-content {
+  background-color: #333;
+  border-color: #666;
+}
+
+body.dark .title h2 {
+  color: #A0D4ED
+}
+
+body.dark hr {
+  border-top-color: #777;
+}
+
 .main-content {
   border: 1px solid #ccc;
   max-width: 700px;
@@ -76,4 +94,10 @@ footer {
 .logo {
   width: 150px;
   height: auto;
+}
+
+#theme {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.9em;
 }
