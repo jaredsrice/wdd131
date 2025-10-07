@@ -173,17 +173,22 @@ figcaption { display: none; }
 
 .viewer-content {
   position: relative;
-  max-width: 90vw;
-  max-height: 85vh;
+  width: 85vw;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .viewer-content img {
   width: 100%;
   height: auto;
-  max-height: 85vh;
-  display: block;
+  max-height: 80vh;
   object-fit: contain;
+  display: block;
 }
+
 
 .close-viewer {
   position: absolute;
