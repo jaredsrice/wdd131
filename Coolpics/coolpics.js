@@ -20,8 +20,10 @@ window.addEventListener("resize", handleResize);
 // Image viewer (modal)
 function viewerTemplate(src, alt) {
   return `
-    <img src="${src}" alt="${alt}">
-    <button class="close-viewer" aria-label="Close viewer">X</button>
+    <div class="viewer-content">
+      <img src="${src}" alt="${alt}">
+      <button class="close-viewer" aria-label="Close viewer">X</button>
+    </div>
   `;
 }
 
