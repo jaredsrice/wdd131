@@ -1,4 +1,3 @@
-// Menu toggle
 const menuButton = document.querySelector(".menu-button");
 const menu = document.querySelector("#primary-nav");
 
@@ -17,7 +16,6 @@ function handleResize() {
 handleResize();
 window.addEventListener("resize", handleResize);
 
-// Image viewer (modal)
 function viewerTemplate(src, alt) {
   return `
     <div class="viewer-content">
