@@ -64,7 +64,7 @@ h1, h2 {
   column-gap: 1.25rem;
   justify-content: end;
   justify-items: end;
-  max-width: 750px;
+  max-width: 925px;
 }
 
 .site-nav a {
@@ -85,8 +85,8 @@ h1, h2 {
   margin: 1rem auto 3rem;
   padding: 0 1rem;
   display: grid;
-  grid-template-columns: 2.2fr 1fr; 
-  gap: 1.5rem;
+  grid-template-columns: 3.25fr 1fr; 
+  gap: 3rem;
 }
 
 .reviews {
