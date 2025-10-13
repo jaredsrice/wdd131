@@ -1,0 +1,227 @@
+/* Colors and fonts */
+:root {
+  --gold: #EFC69B;
+  --red: #AF1B3F;
+  --dark: #473144;
+  --bg: #ffffff;
+}
+
+/* Global reset */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--dark);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+/* Headings use Lora */
+h1, h2 {
+  font-family: 'Lora', serif;
+  color: var(--red);
+}
+
+/* Header */
+.site-header {
+  width: 100%;
+  margin: 0;
+  padding: 1.25rem 0 .5rem;
+  background: var(--bg);
+  border: none;
+  position: relative;
+}
+
+.site-header h1 {
+  margin: 0 0 .5rem 0;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+  color: #000; 
+}
+
+/* Nav (Grid 1) */
+.site-nav {
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: .5rem 0;
+  margin-top: .25rem;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  column-gap: 1.25rem;
+  justify-content: end;
+  justify-items: end;
+  max-width: 750px;
+}
+
+.site-nav a {
+  color: var(--red);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  text-decoration: underline;
+  outline: 2px solid transparent;
+}
+
+/* Main layout (Grid 2) */
+.layout {
+  max-width: 1040px;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr; 
+  gap: 1.5rem;
+}
+
+.reviews {
+  display: grid;
+  gap: 1rem; 
+}
+
+/* Article layout (Grid 3) */
+.review {
+  display: grid;
+  grid-template-columns: 220px 1fr; 
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.meta {
+  text-align: left;
+  padding-right: 1rem;
+  font-size: .95rem;
+}
+
+.meta p {
+  margin: .25rem 0;
+}
+
+/* Book titles */
+.content h2 {
+  margin: .25rem 0 .5rem 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.content h2 a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.content h2 a:hover,
+.content h2 a:focus {
+  text-decoration: underline;
+  outline: 2px solid transparent;
+}
+
+/* Images */
+
+.book-cover {
+  display: block;
+  max-width: 200px;
+  height: auto;
+  margin: 0; 
+}
+
+/* Paragraphs and links */
+.content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.content a {
+  color: var(--red);
+  text-decoration: underline; 
+}
+
+/* Filters box */
+.filters {
+  padding: 1rem;
+  align-self: start; 
+  height: auto;
+  min-height: 260px;
+  color: var(--dark);
+}
+
+/* Footer */
+.site-footer {
+  width: 100%;
+  padding: 1rem 0;
+  color: var(--dark);
+  border-top: 1px solid var(--gold);
+  text-align: center;
+  background: var(--bg);
+}
+
+/* Accessibility helpers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Skip to Content Accessibility Link */
+.skiptocontent a {
+  position: absolute;
+  top: -40px; 
+  left: 0;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 100;
+}
+
+.skiptocontent a:focus {
+  top: 0; 
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .review {
+    grid-template-columns: 140px 1fr;
+  }
+
+  .book-cover {
+    max-width: 160px;
+  }
+
+  .filters {
+    min-height: auto;
+  }
+}
