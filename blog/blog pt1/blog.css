@@ -64,13 +64,14 @@ h1, h2 {
   column-gap: 1.25rem;
   justify-content: end;
   justify-items: end;
-  max-width: 925px;
+  max-width: 950px;
 }
 
 .site-nav a {
   color: var(--red);
   text-decoration: none;
   font-weight: 500;
+  font-size: 1.1rem;
 }
 
 .site-nav a:hover,
