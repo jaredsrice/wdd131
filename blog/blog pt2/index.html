@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kids Read for Fun, a simple book review blog.">
+  <meta name="author" content="Jared Rice">
+  <title>Kids Read for Fun</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+  <script src="blog.js" defer></script>
+</head>
+
+<body>
+  <div class="skiptocontent">
+    <a href="#maincontent">Skip to main content</a>
+  </div>
+
+  <header class="site-header">
+    <h1>Kids Read For Fun</h1>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Search</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="layout" id="maincontent">
+    <section class="reviews" aria-label="Latest reviews">
+
+      <!-- Review 1 -->
+      <article class="review">
+        <div class="meta">
+          <p class="date"><time datetime="2022-07-05">July 5, 2022</time></p>
+          <p class="age">10–14</p>
+          <p class="genre">Fantasy</p>
+          <p class="rating" aria-label="4 out of 5 stars">****</p>
+        </div>
+
+        <div class="content">
+          <h2><a href="#">Septimus Heap Book One: Magyk</a></h2>
+          <figure>
+            <img class="book-cover" src="https://upload.wikimedia.org/wikipedia/en/5/5f/Magkycover2.jpg" alt="Book cover for Septimus Heap 1">
+          </figure>
+          <p>
+            If you enjoy stories about seventh sons of seventh sons and magyk this is the book for you.
+            <a href="#">Read More...</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="review">
+        <div class="meta">
+          <p class="date"><time datetime="2021-12-12">December 12, 2021</time></p>
+          <p class="age">12–16</p>
+          <p class="genre">Fantasy</p>
+          <p class="rating" aria-label="4 out of 5 stars">⭐⭐⭐⭐</p>
+        </div>
+
+        <div class="content">
+          <h2><a href="#">Magnus Chase Book One: Sword of Summer</a></h2>
+          <figure>
+            <img class="book-cover" src="https://books.google.com/books/content/images/frontcover/xWuyBAAAQBAJ?fife=w300" alt="Book cover for Magnus Chase 1">
+          </figure>
+          <p>
+            The anticipated new novel by Rick Riordan, Norse mythology with humor and action.
+            <a href="#">Read More...</a>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <aside class="filters" aria-label="Filters">
+      <h2 class="visually-hidden">Filters</h2>
+      <p>Filter form will go here</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Kids Read for Fun</p>
+  </footer>
+</body>
+</html>

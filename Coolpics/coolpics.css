@@ -116,7 +116,7 @@ figcaption { display: none; }
 /* Media Queries */
 @media (min-width: 700px) {
   .gallery { grid-template-columns: 1fr 1fr; }
-  .nav-list { display: none; } 
+  /* .nav-list { display: none; }  */
 }
 
 @media (min-width: 1000px) {
