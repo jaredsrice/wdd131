@@ -103,7 +103,9 @@ h1, h2 {
   padding-right: 1rem;
   padding-top: 1rem;
   font-size: .95rem;
-  border-right: 1px solid var(--gold); 
+  border-right: 1px solid var(--gold);
+  margin-top: .2rem;
+  margin-bottom: -.75rem;
 }
 
 .meta p {
