@@ -1,10 +1,10 @@
-/* ===== Global tokens ===== */
+/* Global */
 :root {
   --font-size: 1rem;
   --font-family: "OCR A Std", "Courier New", Courier, monospace;
 }
 
-/* ===== Main canvas ===== */
+/* Main */
 .card-form {
   width: 320px;
   margin: 48px auto;
@@ -18,7 +18,7 @@
   color: #333;
 }
 
-/* ===== Card base ===== */
+/* Card Base */
 .card {
   grid-area: stack;
   width: 320px;
@@ -29,13 +29,13 @@
   position: relative;
 }
 
-/* ===== FRONT CARD ===== */
+/* Card Front */
 .card.front {
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 32px 18px 12px; 
+  padding: 18px 32px 18px 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
@@ -51,7 +51,7 @@
   row-gap: 8px;
 }
 
-/* TOTAL row */
+/* Total Row */
 .total {
   grid-column: 1 / -1;
   display: flex;
@@ -67,7 +67,7 @@
   margin-left: -170px;
 }
 
-/* Labels and inputs */
+/* Labels and Inputs */
 .card.front label {
   margin: 0;
   font-size: inherit;
@@ -79,17 +79,17 @@
   border: 1px solid #bdbdbd;
   border-radius: 0;
   background: #fff;
-  font-size: 0.9rem; /* smaller text inside all front inputs */
+  font-size: 0.9rem;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* tighten label-to-input spacing for all fields */
+/* Label spacing */
 .card.front .input-group label {
   margin-bottom: 2px;
 }
 
-/* Card Number spans both columns */
+/* Card Number fully across */
 .card.front p:nth-of-type(2) {
   grid-column: 1 / -1;
   margin: 0;
@@ -97,26 +97,26 @@
   row-gap: 6px;
 }
 
-/* Card Holder column (left) */
+/* Card Holder column */
 .card.front .input-group.holder {
   grid-column: 1;
   display: grid;
   row-gap: 3px;
 }
 
-/* Expiration column (right) — label only above MM/YY */
+/* Expiration column */
 .card.front .input-group.expiration {
   grid-column: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;   
+  grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto;
   align-items: end;
   gap: 3px;
 }
 .card.front .input-group.expiration label {
-  grid-column: 1 / 3;               
-  margin-left: 2px;   
-  margin-bottom: 2px;               
+  grid-column: 1 / 3;
+  margin-left: 2px;
+  margin-bottom: 2px;
 }
 #exp-month,
 #exp-year {
@@ -124,7 +124,7 @@
   text-align: left;
 }
 
-/* ===== BACK CARD ===== */
+/* Card Back */
 .card.back {
   background: #e6e6e6;
   transform: translate(100px, 40px);
@@ -137,14 +137,16 @@
   box-shadow: none;
 }
 
+/* Stripe */
 .stripe {
   grid-column: 1 / -1;
   background: #4a4a4a;
   height: 34px;
   width: 104.75%;
-  margin: 0px 0 12px 0;
+  margin: 0 0 12px 0;
 }
 
+/* CVC Box */
 .cvc {
   grid-column: 2;
   justify-self: end;
@@ -166,10 +168,10 @@
   border: 1px solid #bdbdbd;
   border-radius: 0;
   background: #fff;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
 }
 
-/* ===== Submit placement ===== */
+/* Submit Button */
 .submit {
   grid-area: button;
   justify-self: end;
@@ -181,9 +183,9 @@
   font-size: 0.75rem;
   background: #e6e6e6;
   color: #333;
-  border: 1.5px solid #000; 
-  border-radius: 5px; 
-  padding: 7px 14px;        
+  border: 1.5px solid #000;
+  border-radius: 5px;
+  padding: 7px 14px;
   text-transform: none;
   cursor: pointer;
 }
