@@ -84,7 +84,7 @@
   margin-bottom: 2px;
 }
 
-/* Card Number fully across (use a class, not nth-of-type) */
+/* Card Number fully across */
 .card.front .input-group.number {
   grid-column: 1 / -1;
   margin: 0;
