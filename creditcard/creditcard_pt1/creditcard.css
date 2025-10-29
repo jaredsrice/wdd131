@@ -9,9 +9,7 @@
   width: 320px;
   margin: 48px auto;
   display: grid;
-  grid-template-areas:
-    "stack"
-    "button";
+  grid-template-areas: "stack" "button";
   gap: 16px;
   font-family: var(--font-family);
   font-size: var(--font-size);
@@ -35,13 +33,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 32px 18px 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  padding: 20px 32px 20px 12px;
 }
 
 .card.front .content {
-  transform: scale(0.90);
-  transform-origin: center;
   width: 100%;
   height: 100%;
   display: grid;
@@ -89,8 +84,8 @@
   margin-bottom: 2px;
 }
 
-/* Card Number fully across */
-.card.front p:nth-of-type(2) {
+/* Card Number fully across (use a class, not nth-of-type) */
+.card.front .input-group.number {
   grid-column: 1 / -1;
   margin: 0;
   display: grid;
@@ -142,8 +137,9 @@
   grid-column: 1 / -1;
   background: #4a4a4a;
   height: 34px;
-  width: 104.75%;
   margin: 0 0 12px 0;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 
 /* CVC Box */
@@ -155,7 +151,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-right: -88px;
+  margin-right: -88px; 
   margin-top: 80px;
 }
 .cvc label {
