@@ -1,0 +1,189 @@
+/* ===== Global tokens ===== */
+:root {
+  --font-size: 1rem;
+  --font-family: "OCR A Std", "Courier New", Courier, monospace;
+}
+
+/* ===== Main canvas ===== */
+.card-form {
+  width: 320px;
+  margin: 48px auto;
+  display: grid;
+  grid-template-areas:
+    "stack"
+    "button";
+  gap: 16px;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: #333;
+}
+
+/* ===== Card base ===== */
+.card {
+  grid-area: stack;
+  width: 320px;
+  height: 200px;
+  border-radius: 10px;
+  background: #e6e6e6;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  position: relative;
+}
+
+/* ===== FRONT CARD ===== */
+.card.front {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px 18px 12px; /* insets */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.card.front .content {
+  transform: scale(0.90);
+  transform-origin: center;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 64% 36%;
+  grid-template-rows: auto auto auto;
+  column-gap: 18px;
+  row-gap: 8px;
+}
+
+/* TOTAL row */
+.total {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.total strong {
+  font-weight: normal;
+  margin-left: -170px;
+}
+
+/* Labels and inputs */
+.card.front label {
+  margin: 0;
+  font-size: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.card.front input {
+  padding: 6px 8px;
+  border: 1px solid #bdbdbd;
+  border-radius: 0;
+  background: #fff;
+  font-size: 0.9rem; /* smaller text inside all front inputs */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* tighten label-to-input spacing for all fields */
+.card.front .input-group label {
+  margin-bottom: 2px;
+}
+
+/* Card Number spans both columns */
+.card.front p:nth-of-type(2) {
+  grid-column: 1 / -1;
+  margin: 0;
+  display: grid;
+  row-gap: 6px;
+}
+
+/* Card Holder column (left) */
+.card.front .input-group.holder {
+  grid-column: 1;
+  display: grid;
+  row-gap: 3px;
+}
+
+/* Expiration column (right) — label only above MM/YY */
+.card.front .input-group.expiration {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two boxes only */
+  grid-auto-rows: auto;
+  align-items: end;
+  gap: 3px;
+}
+.card.front .input-group.expiration label {
+  grid-column: 1 / 3;               /* spans MM + YY only */
+  margin-left: 2px;   
+  margin-bottom: 2px;               /* small visual nudge */
+}
+#exp-month,
+#exp-year {
+  width: 55px;
+  text-align: left;
+}
+
+/* ===== BACK CARD ===== */
+.card.back {
+  background: #e6e6e6;
+  transform: translate(100px, 40px);
+  z-index: 1;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  grid-auto-rows: auto;
+  gap: 12px;
+  box-shadow: none;
+}
+
+.stripe {
+  grid-column: 1 / -1;
+  background: #4a4a4a;
+  height: 34px;
+  width: 104.75%;
+  margin: 0px 0 12px 0;
+}
+
+.cvc {
+  grid-column: 2;
+  justify-self: end;
+  align-self: start;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: -88px;
+  margin-top: 80px;
+}
+.cvc label {
+  font-size: 0.95rem;
+  color: #333;
+}
+.cvc input {
+  width: 45px;
+  padding: 4px 6px;
+  border: 1px solid #bdbdbd;
+  border-radius: 0;
+  background: #fff;
+  font-size: 0.9rem; /* consistent input text size */
+}
+
+/* ===== Submit placement ===== */
+.submit {
+  grid-area: button;
+  justify-self: end;
+  margin-right: -90px;
+  margin-top: 40px;
+}
+
+.submit button {
+  font-size: 0.75rem;
+  background: #e6e6e6;
+  color: #333;
+  border: 1.5px solid #000; 
+  border-radius: 5px; /* thin dark border */
+  padding: 7px 14px;        
+  text-transform: none;
+  cursor: pointer;
+}
