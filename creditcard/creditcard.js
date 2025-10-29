@@ -1,5 +1,5 @@
 
-// I wrote all of this after realizing i didnt need to.
+// I wrote all of this after reading the rubric.
 
 
 
@@ -67,4 +67,3 @@
 //   var form = document.querySelector(".card-form");
 //   form.addEventListener("submit", validateForm);
 // });
-
