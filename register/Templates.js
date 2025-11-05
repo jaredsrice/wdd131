@@ -10,17 +10,17 @@ export function participantTemplate(count) {
 
     <div class="item activities">
       <label for="activity${count}">Activity #<span>*</span></label>
-      <input id="activity${count}" name="activity${count}" type="text">
+      <input id="activity${count}" name="activity${count}" type="text" required>
     </div>
 
     <div class="item">
       <label for="fee${count}">Fee ($)<span>*</span></label>
-      <input id="fee${count}" name="fee${count}" type="number">
+      <input id="fee${count}" name="fee${count}" type="number" required>
     </div>
 
     <div class="item">
       <label for="date${count}">Desired Date <span>*</span></label>
-      <input id="date${count}" name="date${count}" type="date">
+      <input id="date${count}" name="date${count}" type="date" required>
     </div>
 
     <div class="item">
