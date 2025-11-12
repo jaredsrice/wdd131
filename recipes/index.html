@@ -3,10 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="description" content="RecipeBook by Jared Rice. Search and view recipes.">
   <meta name="author" content="Jared Rice">
   <title>RecipeBook</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="RecipeBook by Jared Rice">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Search and find simple recipes.">
+  <meta property="og:image" content="https://jaredsrice.github.io/wdd131/recipes/images/apple-crisp.jpg">
+  <meta property="og:url" content="https://jaredsrice.github.io/wdd131/recipes/index.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RecipeBook by Jared Rice">
+  <meta name="twitter:description" content="Search and find simple recipes.">
+  <meta name="twitter:image" content="https://jaredsrice.github.io/wdd131/recipes/images/apple-crisp.jpg">
+  <meta name="twitter:url" content="https://jaredsrice.github.io/wdd131/recipes/index.html">
+
+  <link rel="icon" type="image/png" href="images/recipe-book.png">
   <link rel="stylesheet" href="recipes.css">
   <script type="module" src="main.js"></script>
 </head>
@@ -22,7 +38,7 @@
       <label for="q" class="visually-hidden">Find a recipe</label>
       <input id="q" name="q" type="search" placeholder="Find a recipe" autocomplete="off" aria-label="Search recipes">
       <button type="submit" aria-label="Search">
-        <span aria-hidden="true">🔍</span>
+        <img src="images/search.svg" alt="" width="24" height="24" aria-hidden="true">
       </button>
     </form>
   </header>
