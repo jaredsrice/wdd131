@@ -1,253 +1,259 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
-/* ===== Design tokens (contrast-friendly) ===== */
+/* Design tokens */
 :root {
-  --primary-color: #0b5cab;      /* darker blue for 4.5:1 contrast */
-  --secondary-color: #59c3c3;
-  --text-dark: #222;             /* slightly darker body text */
-  --text-light: #ebebeb;
-
-  --primary-font: Arial, Helvetica, sans-serif;
-  --secondary-font: "Patrick Hand", Arial, Helvetica, sans-serif;
-
-  --radius: 10px;
-  --border: 1px solid #555;
-  --gap: 16px;
+    --primary-color: #0b5cab;
+    --secondary-color: #59c3c3;
+    --text-dark: #222;        
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: "Patrick Hand", Arial, Helvetica, sans-serif;
+    --radius: 10px;
+    --border: 1px solid #555;
+    --gap: 16px;
 }
 
-/* ===== Global ===== */
+/* Global */
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body {
-  font-family: var(--primary-font);
-  color: var(--text-dark);
-  background: #fff;
-}
-img { max-width: 100%; height: auto; display: block; }
 
-/* visible focus (a11y) */
+html, body { 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: var(--primary-font);
+    color: var(--text-dark);
+    background: #fff;
+}
+
+img { 
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
 a:focus, button:focus, input:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden; clip: rect(1px,1px,1px,1px);
-  white-space: nowrap;
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
 }
 
-/* ===== Header ===== */
+/* Header */
 .site-header { padding: 24px 20px 0; }
 
-/* Centered brand; logo next to text; baseline aligned; tight gap */
 .brand {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  gap: 4px;                 /* tighten spacing logo ↔ text */
-  text-align: center;
-  margin: 0 auto 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    margin: 0 auto 8px;
 }
+
 .brand img { width: 72px; height: 72px; }
+
 .brand h1 {
-  font-family: var(--secondary-font);
-  font-size: 40px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin: 0;
-  color: var(--text-dark);
+    font-family: var(--secondary-font);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0;
+    color: var(--text-dark);
 }
 
-/* ===== Search (improved tap targets + SVG icon) ===== */
+/* Search */
 .search {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  margin: 40px auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    margin: 40px auto 15px;
 }
+
 .search input {
-  flex: 1;
-  padding: 0 12px;
-  border: var(--border);
-  border-right: none;
-  border-radius: 5px 0 0 5px;
-  font-size: 1rem;
-  height: 48px;              /* ≥48px for touch */
-  line-height: 48px;
+    flex: 1;
+    padding: 0 12px;
+    border: var(--border);
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    height: 40px;
+    line-height: 48px;
 }
+
 .search button {
-  width: 48px;               /* ≥48px for touch */
-  border: var(--border);
-  border-radius: 0 5px 5px 0;
-  background: #fff;
-  cursor: pointer;
-  height: 48px;
-  color: var(--text-dark);
+    width: 48px;
+    border: var(--border);
+    border-radius: 0 5px 5px 0;
+    background: #fff;
+    cursor: pointer;
+    height: 40px;
+    color: var(--text-dark);
 }
+
 .search button img {
-  width: 24px;
-  height: 24px;
-  display: block;
-  margin: auto;              /* center the SVG inside the button */
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: auto;
 }
 
-/* ===== Divider under search ===== */
+/* Divider */
 .results::before {
-  content: "";
-  display: block;
-  height: 1px;
-  background: #c8c8c8;
-  margin: 0 0 15px 0;
+    content: "";
+    display: block;
+    height: 1px;
+    background: #c8c8c8;
+    margin: 0 0 15px 0;
 }
 
-/* ===== Results container ===== */
+/* Results */
 .results {
-  padding: 0 20px 28px;
-  width: 100%;
-  margin: 0 auto;
+    padding: 0 20px 28px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-/* ===== Card ===== */
+/* Card */
 .card {
-  border: var(--border);
-  border-radius: 5px;
-  padding: 18px;
-  display: block;              /* mobile: stacked */
+    border: var(--border);
+    border-radius: 5px;
+    padding: 18px;
+    display: block;
 }
+
 .card-image {
-  border-radius: 0;
-  margin-bottom: 14px;
-  width: 100%;                 /* fluid on mobile */
+    border-radius: 0;
+    margin-bottom: 14px;
+    width: 100%;
 }
 
-/* tags */
 .tags {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.tag {
-  border: var(--border);
-  border-radius: 0;
-  padding: 3px 7px;
-  background: #fff;
-  font-size: 1rem;
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
-  font-weight: 500;
-  margin-top: -10px;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
-/* title */
+.tag {
+    border: var(--border);
+    border-radius: 0;
+    padding: 3px 7px;
+    background: #fff;
+    font-size: 1rem;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    font-weight: 500;
+    margin-top: -10px;
+}
+
 .card-title {
-  margin: 20px 0 4px;
-  font-family: var(--secondary-font);
-  font-size: 20px;
-  color: var(--primary-color);  /* high-contrast link color */
-  font-weight: 400;
-  line-height: 1;
+    margin: 20px 0 4px;
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 400;
+    line-height: 1;
 }
 .card-link { color: inherit; text-decoration: none; }
 
-/* rating (darker for contrast) */
 .rating {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: #8a6e00;              /* darker gold to pass contrast */
-  font-size: 16px;
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #8a6e00;
+    font-size: 16px;
 }
 
-/* hide description on small screens */
 .card-desc { display: none; }
 
-/* === Social bar (in footer) === */
+/* Footer social bar */
 .social-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
+
 .social-bar a {
-  width: 56px;                 /* ≥48px tap targets */
-  height: 56px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
 }
+
 .social-bar img {
-  width: 45px;
-  height: 45px;
-  display: block;
+    width: 45px;
+    height: 45px;
+    display: block;
 }
 
-/* === Footer === */
+/* Footer */
 .site-footer {
-  text-align: center;
-  padding: 0;
-  margin: 0;
+    text-align: center;
 }
 
-/* mobile: text below icons */
 .footer-content {
-  display: flex;
-  flex-direction: column-reverse;   /* icons first, text under */
-  align-items: center;
-  gap: 8px;                         /* tighter vertical spacing */
-  padding: 10px 0 20px;
-}
-.site-footer .attrib {
-  margin: 0;
-  padding: 0;
-  line-height: 1.3;
-}
-.site-footer .attrib a {
-  font-size: 1rem;                  /* ensure readable/link contrast */
-  color: var(--primary-color);
-  text-decoration: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0 20px;
 }
 
-/* ===== Breakpoint 1 (~600px) ===== */
+.site-footer .attrib {
+    line-height: 1.3;
+}
+
+.site-footer .attrib a {
+    font-size: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+/* Breakpoint 1 (~600px) */
 @media (min-width: 600px) {
-  /* Card: vertical → horizontal */
   .card {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;
   }
+
   .card-image { width: 320px; margin: 0; }
   .card-body { flex: 1; }
   .card-desc { display: block; color: #555; margin-top: 8px; }
 
-  /* Footer: text left, icons right, same inner barriers as content */
   .site-footer .footer-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;  /* text left, icons right */
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;                 /* match header/results side padding */
-    box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
   }
+
   .site-footer .attrib { margin: 0; text-align: left; }
   .site-footer .social-bar { justify-content: flex-end; gap: 6px; }
 }
 
-/* ===== Breakpoint 2 (~960px) ===== */
+/* Breakpoint 2 (~960px) */
 @media (min-width: 960px) {
-  /* Cap header, results, and footer to the same width */
-  .site-header,
-  .results,
-  .site-footer {
-    max-width: 960px;
-    margin: 0 auto;
+    .site-header,
+    .results,
+    .site-footer {
+        max-width: 960px;
+        margin: 0 auto;
   }
 }
