@@ -36,14 +36,14 @@ img { max-width: 100%; height: auto; display: block; }
 .site-header { padding: 24px 20px 0; }
 .brand {
   display: flex;
-  align-items: baseline; /* aligns image bottom with text baseline */
-  gap: 10px;
-  margin-bottom: 8px;
+  flex-direction: row;       /* logo next to text */
+  align-items: baseline;     /* align text baseline with bottom of image */
+  justify-content: center;   /* center entire group */               
+  text-align: center;
+  margin: 0 auto 8px;        /* keep centered in header */
 }
-.brand img {
-  width: 72px;
-  height: 72px;
-}
+
+.brand img { width: 72px; height: 72px; }
 .brand h1 {
   font-family: var(--secondary-font);
   font-size: 40px;
@@ -55,8 +55,9 @@ img { max-width: 100%; height: auto; display: block; }
 /* ===== Search ===== */
 .search {
   display: flex;
-  justify-content: center; /* centers search vertically around divider */
+  justify-content: center;
   align-items: stretch;
+  width: 100%;                 /* always match container width */
   margin: 40px auto 15px;
 }
 .search input {
@@ -87,16 +88,24 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 0 15px 0;
 }
 
+/* ===== Results container ===== */
+.results {
+  padding: 0 20px 28px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* ===== Card ===== */
-.results { padding: 0 20px 28px; }
 .card {
   border: var(--border);
   border-radius: 5px;
   padding: 18px;
+  display: block;              /* mobile: stacked */
 }
 .card-image {
   border-radius: 0;
   margin-bottom: 14px;
+  width: 100%;                 /* fluid on mobile */
 }
 
 /* tags */
@@ -106,14 +115,14 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 10px;
 }
 .tag {
-    border: var(--border);
-    border-radius: 0;
-    padding: 3px 7px;
-    background: #fff;
-    font-size: 1rem;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-    font-weight: 500;
-    margin-top: -10px;
+  border: var(--border);
+  border-radius: 0;
+  padding: 3px 7px;
+  background: #fff;
+  font-size: 1rem;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-weight: 500;
+  margin-top: -10px;
 }
 
 /* title */
@@ -138,27 +147,24 @@ img { max-width: 100%; height: auto; display: block; }
 /* hide description on small screens */
 .card-desc { display: none; }
 
-/* === Social bar === */
+/* === Social bar (in footer) === */
 .social-bar {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
-
 .social-bar a {
-    margin-top: 40px;
-  width: 50px;          /* larger box to fit bigger icon */
+  width: 50px;
   height: 50px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: #fff;
 }
-
 .social-bar img {
-  width: 45px;          /* increases visible icon size */
+  width: 45px;
   height: 45px;
   display: block;
 }
@@ -166,27 +172,65 @@ img { max-width: 100%; height: auto; display: block; }
 /* === Footer === */
 .site-footer {
   text-align: center;
-  padding: 0;               /* remove top/bottom spacing */
+  padding: 0;
   margin: 0;
 }
 
-.site-footer small {
-  display: none;            /* optional, hides © if you want exact mockup look */
+/* mobile: text below icons */
+.footer-content {
+  display: flex;
+  flex-direction: column-reverse;   /* icons first, text under */
+  align-items: center;
+  padding: 10px 0px 20px;
 }
-
 .site-footer .attrib {
   margin: 0;
   padding: 0;
-  line-height: 1;
-  position: relative;
-  top: -30px;
+  line-height: 1.2;
 }
-
 .site-footer .attrib a {
   font-size: 0.8em;
   color: var(--primary-color);
   text-decoration: none;
   display: inline-block;
-  margin: 0;                /* kills any leftover gap */
+  margin: 0;
   padding: 0;
+}
+
+/* ===== Breakpoint 1 (~600px) ===== */
+@media (min-width: 600px) {
+  /* Card: vertical → horizontal */
+  .card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .card-image { width: 320px; margin: 0; }
+  .card-body { flex: 1; }
+  .card-desc { display: block; color: #555; margin-top: 8px; }
+
+  /* Footer: text left, icons right, same inner barriers as content */
+  .site-footer .footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  /* text left, icons right */
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;                 /* matches header/results side padding */
+    box-sizing: border-box;
+  }
+  .site-footer .attrib { margin: 0; text-align: left; }
+  .site-footer .social-bar { justify-content: flex-end; gap: 6px; }
+}
+
+/* ===== Breakpoint 2 (~960px) ===== */
+@media (min-width: 960px) {
+  /* Cap header, results, and footer to the same width */
+  .site-header,
+  .results,
+  .site-footer {
+    max-width: 960px;
+    margin: 0 auto;
+  }
 }
