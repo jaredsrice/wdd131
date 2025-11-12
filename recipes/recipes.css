@@ -231,8 +231,14 @@ a:focus, button:focus, input:focus {
   }
 
   .card-image { width: 320px; margin: 0; }
-  .card-body { flex: 1; }
-  .card-desc { display: block; color: #555; margin-top: 8px; }
+  .card-body { 
+    flex: 1; 
+  }
+
+  .card-desc { 
+    display: block; 
+    color: #555; 
+    margin-top: 8px; }
 
   .site-footer .footer-content {
       display: flex;
@@ -246,6 +252,11 @@ a:focus, button:focus, input:focus {
 
   .site-footer .attrib { margin: 0; text-align: left; }
   .site-footer .social-bar { justify-content: flex-end; gap: 6px; }
+
+  .tag {
+    margin-top: 0;            
+  }
+
 }
 
 /* Breakpoint 2 (~960px) */
