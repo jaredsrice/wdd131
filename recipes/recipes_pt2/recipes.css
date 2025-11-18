@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
+/* Design tokens */
+:root {
+    --primary-color: #0b5cab;
+    --secondary-color: #59c3c3;
+    --text-dark: #222;        
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: "Patrick Hand", Arial, Helvetica, sans-serif;
+    --radius: 10px;
+    --border: 1px solid #555;
+    --gap: 16px;
+}
+
+/* Global */
+* { box-sizing: border-box; }
+
+html, body { 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: var(--primary-font);
+    color: var(--text-dark);
+    background: #fff;
+}
+
+img { 
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
+a:focus, button:focus, input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
+}
+
+/* Header */
+.site-header { padding: 24px 20px 0; }
+
+.brand {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+    margin: 0 auto 8px;
+}
+
+.brand img { width: 72px; height: 72px; }
+
+.brand h1 {
+    font-family: var(--secondary-font);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* Search */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 40px auto 15px;
+}
+
+.search input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 12px;
+    border: var(--border);
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    height: 48px;
+}
+
+.search button {
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border);
+    border-radius: 0 5px 5px 0;
+    background: #fff;
+    cursor: pointer;
+    height: 48px;
+}
+
+.search button img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Divider */
+.results::before {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #c8c8c8;
+    margin: 0 0 15px 0;
+}
+
+/* Results */
+.results {
+    padding: 0 20px 28px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Card */
+.card {
+    border: var(--border);
+    border-radius: 5px;
+    padding: 18px;
+    display: block;
+}
+
+.card-image {
+    border-radius: 0;
+    margin-bottom: 14px;
+    width: 100%;
+}
+
+.tags {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    border: var(--border);
+    border-radius: 0;
+    padding: 3px 7px;
+    background: #fff;
+    font-size: 1rem;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    font-weight: 500;
+    margin-top: -10px;
+}
+
+.card-title {
+    margin: 20px 0 4px;
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.card-link { color: inherit; text-decoration: none; }
+
+.rating {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #8a6e00;
+    font-size: 16px;
+}
+
+.card-desc { display: none; }
+
+/* Footer social bar */
+.social-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.social-bar a {
+    width: 55px;
+    height: 55px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.social-bar img {
+    width: 45px;
+    height: 45px;
+    display: block;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.site-footer .attrib {
+  margin: 5px 0px;          
+  padding: 0;
+}
+
+.site-footer .attrib a {
+    font-size: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Breakpoint 1 (~600px) */
+@media (min-width: 600px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .card-image { width: 320px; margin: 0; }
+  .card-body { 
+    flex: 1; 
+  }
+
+  .card-desc { 
+    display: block; 
+    color: #555; 
+    margin-top: 8px; }
+
+  .site-footer .footer-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+  }
+
+  .site-footer .attrib { margin: 0; text-align: left; }
+  .site-footer .social-bar { justify-content: flex-end; gap: 6px; }
+
+  .tag {
+    margin-top: 0;            
+  }
+
+}
+
+/* Breakpoint 2 (~960px) */
+@media (min-width: 960px) {
+    .site-header,
+    .results,
+    .site-footer {
+        max-width: 960px;
+        margin: 0 auto;
+  }
+}
