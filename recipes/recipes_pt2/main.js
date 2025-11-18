@@ -1,8 +1,7 @@
 // Import recipes
 import recipes from "./recipes.mjs";
 
-
-//Random Functions 
+//Randomizer
 
 function random(num) {
     return Math.floor(Math.random() * num);
@@ -13,10 +12,8 @@ function getRandomListEntry(list) {
     return list[index];
 }
 
-
 // Template Functions
 
-// Tags template
 function tagsTemplate(tags) {
     let html = "";
     for (const tag of tags) {
@@ -25,7 +22,6 @@ function tagsTemplate(tags) {
     return html;
 }
 
-// Rating template
 function ratingTemplate(rating) {
     let html = `
         <span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">
@@ -43,7 +39,6 @@ function ratingTemplate(rating) {
     return html;
 }
 
-// Recipe card template
 function recipeTemplate(recipe) {
     return `
     <article class="card">
@@ -69,8 +64,7 @@ function recipeTemplate(recipe) {
     `;
 }
 
-
-// Rendering Functions
+// Rendering
 
 function renderRecipes(recipeList) {
     const resultsElement = document.getElementById("results");
@@ -87,7 +81,7 @@ function init() {
 
 init();
 
-// Filtering Recipes 
+// Filtering 
 
 function filterRecipes(query) {
     const filtered = recipes.filter(recipe => {
