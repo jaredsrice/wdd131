@@ -24,13 +24,14 @@ function tagsTemplate(tags) {
 
 function ratingTemplate(rating) {
     let html = `
-        <span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">
+    <span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">
     `;
 
     for (let i = 1; i <= 5; i++) {
         if (i <= rating) {
             html += `<span aria-hidden="true" class="icon-star">⭐</span>`;
-        } else {
+        } 
+        else {
             html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
         }
     }
@@ -42,7 +43,7 @@ function ratingTemplate(rating) {
 function recipeTemplate(recipe) {
     return `
     <article class="card">
-        <img class="card-image" src="${recipe.image}" alt="${recipe.description}">
+    <img class="card-image" src="${recipe.image}" alt="${recipe.description}">
         <div class="card-body">
 
             <div class="tags">
