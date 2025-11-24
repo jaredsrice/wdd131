@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8" />
+		<title>Site Plan</title>
+		<link type="text/css" rel="stylesheet" href="site-plan.css" />
+	</head>
+
+	<body>
+		<header>
+			<h1>SimpleBudget Site Plan</h1>
+			<h2>Jared Rice</h2>
+			<h2>WDD 131</h2>
+			<!-- In the header above, add the name or your site, your name and class number. For example if you are in section 3 you would put WDD 131.03 -->
+		</header>
+		<main>
+			<!-- ------------------------Steps 2-3------------------------------ -->
+			<hr />
+			<h2>Overview</h2>
+			<h3>Purpose</h3>
+			<p>A simple website that helps users track monthly income and expenses. 
+                It allows users to add transactions, categorize spending, and view a clear summary of their financial activity. 
+                The goal is to make personal budgeting easy and beginner-friendly.</p>
+			<!-- change this -->
+
+			<h3>Audience</h3>
+			<p>The site is designed for anyone who wants a basic and clean budgeting tool without using complicated
+                software. </p>
+			<!-- change this -->
+
+			<h3>Dynamic elements</h3>
+			<p>When someone adds a new income or expense, the page will show it right away. 
+                I’m storing the transactions in arrays and objects, then using simple functions to add items, calculate totals, 
+                and filter by category. JavaScript will listen for button clicks and form submissions and then 
+                update the page automatically by changing the DOM. </p>
+			<!-- change this -->
+
+			<hr />
+			<h2>Branding</h2>
+			<h3>Website Logo</h3>
+			<!-- Replace this with some sort of logo for your site.  A logo can be as simple as the name of your site in a nice font :) -->
+			<img src="images/simplebudget-logo.png" alt="Logo image, A Piggybank with the words 'SimpleBudget' underneath." />
+			<hr />
+			<h2>Style Guide</h2>
+
+			<!-- ------------------------Steps 4-8------------------------------ -->
+
+			<h3>Color Palette</h3>
+			<!--  The colors you choose for a website are one of the most important decisions you will make. Follow the instructions on the activity in iLearn then return and replace the color codes below with the hex color codes (the 6 digit numbers that show at the bottom of each color) for the colors you have chosen below.  You should have at least 2 colors but do not have to fill in all 4 if you do not need them.  -->
+
+			<!-- Copy and paste the URL to your finished palette below Make sure to paste it into both spots -->
+			Palette URL:
+			<a
+				href="https://coolors.co/14617a-0e4656-8bd5a2-ffffff"
+				target="_blank"
+				>https://coolors.co/14617a-0e4656-8bd5a2-ffffff</a
+			>
+
+			<table class="colors">
+				<tbody>
+					<tr>
+						<th>Primary</th>
+						<th>Secondary</th>
+						<th>Accent 1</th>
+						<th>Accent 2</th>
+					</tr>
+					<!-- Replace the numbers in the boxes below with your hex color codes. Then switch to the site-plan.css file and change your colors there as well. -->
+					<tr>
+						<td class="primary">[#14617A]</td>
+						<td class="secondary">[#0E4656]</td>
+						<td class="accent1">[#8BD5A2]</td>
+						<td class="accent2">[#FFFFFF]</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- ------------------------Step 9------------------------------ -->
+
+			<h3>Typography</h3>
+			<!-- Choose a font for your paragraphs (body copy) and headlines. What font(s) have you chosen? Why did you choose what you did?  Make sure to review the list of web safe fonts at W3Schools.org as a starting point.  Think also about which of your colors above you might use for background and font colors. -->
+
+			<h4>
+				Heading Font: Poppins
+				<!-- change this -->
+			</h4>
+			<h4>
+				Paragraph Font: Lato
+				<!-- change this -->
+			</h4>
+			<h3>Normal paragraph example</h3>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+				veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+				velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+				occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+				mollit anim id est laborum.
+			</p>
+			<h3>Colored paragraph example</h3>
+			<p class="colored">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+				veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				commodo consequat.
+			</p>
+
+			<!-- ------------------------Step 10------------------------------ -->
+
+			<h3>Navigation</h3>
+			<!-- Think about how you want your navigation bar to look. In the site-plan.css file change the colors to your colors to get the look you desire. -->
+			<nav>
+				<a href="#">Home</a>
+				<a href="#">Transactions</a>
+			</nav>
+			<hr />
+
+			<h2>Content</h2>
+			<h3>Home page</h3>
+			<p>I have a few images that I'll be using to add a bit of flair to my page, but there's a lot of them and I don't want to flood the site plan with them. 
+                In terms of content, there will be initial placeholder values in the 'Summary Card', which is the top one. It'll be a quick overview of total income, total expenses, and current balance.
+                The bottom sections will have weekly spend values, amount of spending categories, and a percentage savings goal. 
+            </p>
+			<h3>Transactions Page</h3>
+			<p>The transactions page will start with several placeholder values so the table is not empty, and will be a mix of income and expenses 
+                to demonstrate functionality.
+                The starting values will be: 
+                Paycheck - Amount: 1500.00, Category: Income, Date: 2025-02-01
+                Groceries - Amount: -62.45, Category: Food, Date: 2025-02-02
+                Gas Station - Amount: -40.00, Category: Transportation, Date: 2025-02-03
+                Rent Payment - Amount: -1200.00, Category: Housing, Date: 2025-02-01
+                Coffee Shop - Amount: -8.75, Category: Food, Date: 2025-02-03
+
+            </p>
+			<h2>Wireframes</h2>
+			<p>
+				Create two wireframes for your site. One for each page and list them
+				here
+			</p>
+
+			<h3>Home</h3>
+			<p>
+				The software I was using here made spacing difficult, but this is a basic
+                layout of what I want the home page to look like. The images will be either my logo or opensource icons that fit the theme of budgeting and finance.
+                I'm also not doing a traditional navigation bar, it didn't really fit with what I'm going for with the design.
+                The values in the cards will be partially dynamic, updating based on what the user inputs on the second page as long as both pages are open in the same session.
+                I'll put initial placeholder values in so the user can see what it will look like.
+
+			</p>
+			<img src="images/home-page-wireframe.png" alt="home page wireframe" />
+
+			<h3>[Page 2]</h3>
+			<p>
+				The big middle box with the 'X' is where the dynamic budget table will go. 
+                The user will be able to add income and expenses using the form at the bottom, 
+                and the table will update automatically to show their current expenses. It will have 4 columns for Name, Amount, Category, and Date.
+                The amount values will be color coded to show income in green and expenses in red, with + and - symbols respectively. The categories will
+                be labeled and color coded as well. A disclamer, if anything is too complicated I probably will simplify or remove it.
+
+                The bottom form won't have images under Transaction name or amount, but are text boxes. 
+            </p>
+			<img src="images/page-2-wireframe.png" alt="page 2 wireframe" />
+		</main>
+	</body>
+</html>
