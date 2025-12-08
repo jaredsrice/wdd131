@@ -67,9 +67,8 @@ function computeSummaryValues(transactionList) {
 
     for (const entry of transactionList) {
         const entryDate = new Date(entry.date);
-        const categoryLower = entry.category.toLowerCase();
 
-        if (Number.isNaN(entryDate.getTime()) === false) {
+        if (!Number.isNaN(entryDate.getTime())) {
             const isExpense = entry.amount < 0;
 
             if (
@@ -88,7 +87,7 @@ function computeSummaryValues(transactionList) {
         const entryDate = new Date(entry.date);
         const categoryLower = entry.category.toLowerCase();
 
-        if (Number.isNaN(entryDate.getTime()) === false) {
+        if (!Number.isNaN(entryDate.getTime())) {
             const isRegularCategory =
                 categoryLower !== "income" &&
                 categoryLower !== "savings";
@@ -204,7 +203,7 @@ function initTransactionsPage() {
             nameCell.textContent = entry.name;
 
             const amountCell = document.createElement("td");
-            const isIncome = entry.amount > 0;
+            const isIncome = entry.amount > 0 && entry.category.toLowerCase() !== "savings";
             const prefix = isIncome ? "+" : "";
             amountCell.textContent = prefix + formatCurrencyAmount(entry.amount);
             amountCell.className = isIncome ? "amount-good" : "amount-bad";
@@ -271,8 +270,6 @@ function initTransactionsPage() {
             date: dateValue
         };
 
-        transactionList = transactionList.filter(entry => entry.id > 100);
-
         transactionList.push(newTransactionEntry);
         saveTransactionList(transactionList);
 
@@ -288,13 +285,13 @@ function initTransactionsPage() {
 
     const resetButtonElement = document.querySelector("#resetApp");
     if (resetButtonElement) {
-    resetButtonElement.addEventListener("click", () => {
-        const confirmReset = confirm("Clear all transactions and restore defaults?");
-        if (confirmReset) {
-            localStorage.removeItem("simplebudget-transactions");
-            location.reload();
-        }
-    });
+        resetButtonElement.addEventListener("click", () => {
+            const confirmReset = confirm("Clear all transactions and restore defaults?");
+            if (confirmReset) {
+                localStorage.removeItem("simplebudget-transactions");
+                location.reload();
+            }
+        });
     }
 }
 
