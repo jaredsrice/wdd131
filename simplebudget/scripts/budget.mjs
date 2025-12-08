@@ -11,18 +11,22 @@ const defaultTransactionList = [
 ];
 
 function loadTransactionList() {
-    const storedTransactions = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(STORAGE_KEY);
 
-    if (!storedTransactions) {
-        return [...defaultTransactionList];
+    if (!stored) {
+        // First visit: load defaults, but DO NOT return them again later
+        const defaultsCopy = [...defaultTransactionList];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultsCopy));
+        return defaultsCopy;
     }
 
     try {
-        return JSON.parse(storedTransactions);
+        return JSON.parse(stored);
     } catch {
         return [...defaultTransactionList];
     }
 }
+
 
 function saveTransactionList(transactionList) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(transactionList));
@@ -270,8 +274,14 @@ function initTransactionsPage() {
             date: dateValue
         };
 
-        transactionList.push(newTransactionEntry);
+        
+        if (transactionList.some(t => t.id <= 6)) {
+        transactionList = transactionList.filter(t => t.id > 6);
+        }
+
+        (newTransactionEntry);
         saveTransactionList(transactionList);
+
 
         populateCategoryFilterOptions();
         renderTransactionTable();
