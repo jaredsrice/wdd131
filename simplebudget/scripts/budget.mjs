@@ -2,11 +2,12 @@ const STORAGE_KEY = "simplebudget-transactions";
 const SAVINGS_GOAL = 1500;
 
 const defaultTransactionList = [
-    { id: 1, name: "Paycheck", amount: 1500.0, category: "Income", date: "2025-02-01" },
-    { id: 2, name: "Groceries", amount: -62.45, category: "Food", date: "2025-02-02" },
-    { id: 3, name: "Gas Station", amount: -40.0, category: "Transportation", date: "2025-02-03" },
-    { id: 4, name: "Rent Payment", amount: -1200.0, category: "Housing", date: "2025-02-01" },
-    { id: 5, name: "Coffee Shop", amount: -8.75, category: "Food", date: "2025-02-03" }
+    { id: 1, name: "Paycheck", amount: 1900.0, category: "Income", date: "2025-12-06" },
+    { id: 2, name: "Groceries", amount: -62.45, category: "Food", date: "2025-12-08" },
+    { id: 3, name: "Gas Station", amount: -40.0, category: "Transportation", date: "2025-12-06" },
+    { id: 4, name: "Rent Payment", amount: -1200.0, category: "Housing", date: "2025-12-05" },
+    { id: 5, name: "Coffee Shop", amount: -8.75, category: "Food", date: "2025-12-03" },
+    { id: 6, name: "Savings", amount: 500.0, category: "Savings", date: "2025-12-04" }
 ];
 
 function loadTransactionList() {
