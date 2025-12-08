@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SimpleBudget by Jared Rice. Track income, expenses, categories, and savings.">
+    <meta name="author" content="Jared Rice">
+
+    <title>SimpleBudget | Overview</title>
+
+    <meta property="og:title" content="SimpleBudget by Jared Rice">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="A clean and simple budgeting tool to track income, expenses, and savings goals.">
+    <meta property="og:image" content="https://jaredsrice.github.io/wdd131/simplebudget/images/simplebudget-logo.png">
+    <meta property="og:url" content="https://jaredsrice.github.io/wdd131/simplebudget/index.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SimpleBudget by Jared Rice">
+    <meta name="twitter:description" content="Track income, expenses, categories, and savings with SimpleBudget.">
+    <meta name="twitter:image" content="https://jaredsrice.github.io/wdd131/simplebudget/images/simplebudget-logo.png">
+    <meta name="twitter:url" content="https://jaredsrice.github.io/wdd131/simplebudget/index.html">
+
+    <link rel="icon" type="image/png" href="images/simplebudget-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="scripts/main.js"></script>
+</head>
+
+<body data-page="home">
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <img src="images/simplebudget-logo.png" alt="SimpleBudget logo" class="brand-logo">
+                <span class="brand-name">SimpleBudget</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <h1>Welcome to SimpleBudget</h1>
+            <p>
+                Take control of your financial future with SimpleBudget, the intuitive platform designed to help you
+                track your monthly income and expenses effortlessly. Our streamlined approach makes budgeting simple,
+                giving you clear insights into your spending patterns and helping you make informed financial decisions
+                that align with your goals.
+            </p>
+        </section>
+
+        <section class="card summary-card">
+            <h2>Financial Summary</h2>
+            <div class="summary-grid">
+                <article class="summary-item">
+                    <div class="icon-circle icon-income" aria-hidden="true">↑</div>
+                    <p class="item-label">Total Income</p>
+                    <p class="item-value" id="incomeTotal">$0.00</p>
+                </article>
+
+                <article class="summary-item">
+                    <div class="icon-circle icon-expense" aria-hidden="true">↓</div>
+                    <p class="item-label">Total Expenses</p>
+                    <p class="item-value" id="expenseTotal">$0.00</p>
+                </article>
+
+                <article class="summary-item">
+                    <div class="icon-circle icon-balance" aria-hidden="true">◎</div>
+                    <p class="item-label">Current Balance</p>
+                    <p class="item-value" id="balanceTotal">$0.00</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="metrics">
+            <article class="card metric-card">
+                <div class="metric-icon" aria-hidden="true">📅</div>
+                <p class="metric-title">This Week's Spending</p>
+                <p class="metric-value" id="weeklySpending">$0.00</p>
+                <p class="helper-text">
+                    Your total expenses for the current week across all categories.
+                </p>
+            </article>
+
+            <article class="card metric-card">
+                <div class="metric-icon" aria-hidden="true">🧾</div>
+                <p class="metric-title">Spending Categories</p>
+                <p class="metric-value" id="categoryCount">0</p>
+                <p class="helper-text">
+                    Number of spending categories you have used this month.
+                </p>
+            </article>
+
+            <article class="card metric-card">
+                <div class="metric-icon" aria-hidden="true">🎯</div>
+                <p class="metric-title">Savings Goal Tracker</p>
+                <p class="metric-value" id="savingsPercent">0%</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="savingsBar"></div>
+                </div>
+                <p class="helper-text">
+                    Progress toward your monthly savings target of $1,500.
+                </p>
+            </article>
+        </section>
+
+        <section class="callout">
+            <p>
+                Ready to dive deeper into your financial data? Access your complete transaction history, add new
+                income and expense entries, and gain detailed insights into your spending patterns on our comprehensive
+                Transactions Page.
+            </p>
+            <a class="primary-button" href="transactions.html">View Transactions</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2024 SimpleBudget. Making personal budgeting simple and beginner friendly.</p>
+    </footer>
+</body>
+</html>

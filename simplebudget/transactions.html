@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SimpleBudget Transactions. View, filter, and add income or expense entries.">
+    <meta name="author" content="Jared Rice">
+
+    <title>SimpleBudget | Transactions</title>
+
+    <meta property="og:title" content="SimpleBudget Transactions by Jared Rice">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Access your full transaction history. Add, view, and filter your budget entries.">
+    <meta property="og:image" content="https://jaredsrice.github.io/wdd131/simplebudget/images/simplebudget-logo.png">
+    <meta property="og:url" content="https://jaredsrice.github.io/wdd131/simplebudget/transactions.html">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SimpleBudget Transactions by Jared Rice">
+    <meta name="twitter:description" content="View and manage all your income and expenses with SimpleBudget.">
+    <meta name="twitter:image" content="https://jaredsrice.github.io/wdd131/simplebudget/images/simplebudget-logo.png">
+    <meta name="twitter:url" content="https://jaredsrice.github.io/wdd131/simplebudget/transactions.html">
+
+    <link rel="icon" type="image/png" href="images/simplebudget-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="scripts/main.js"></script>
+</head>
+
+<body data-page="transactions">
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <img src="images/simplebudget-logo.png" alt="SimpleBudget logo" class="brand-logo">
+                <span class="brand-name">SimpleBudget</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="hero hero-narrow">
+            <h1>All Transactions</h1>
+            <p>
+                This page displays a complete record of every income and expense you have logged.
+                Each transaction directly impacts the summary values shown on your home page, giving you
+                a comprehensive view of your financial activity. Review, filter, and manage your entries
+                to maintain accurate budget tracking.
+            </p>
+        </section>
+
+        <section class="card filter-card">
+            <label for="filterSelect" class="filter-label">Filter by Category:</label>
+            <select id="filterSelect" name="filterSelect" class="select-input">
+                <option value="all">All Categories</option>
+            </select>
+            <p class="helper-text">
+                Use the dropdown above to narrow transactions by specific categories, making it easier to analyze
+                spending patterns in particular areas of your budget.
+            </p>
+        </section>
+
+        <section class="card table-card">
+            <div class="table-header">
+                <h2>Transaction History</h2>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="helper-text">
+                Income amounts appear in green. Expenses appear in red.
+            </p>
+        </section>
+
+        <section class="card form-card">
+            <h2>Add a New Transaction</h2>
+            <p class="helper-text">
+                Fill out the form below to record a new income or expense. Enter a descriptive name,
+                the amount (positive for income, negative for expenses), select the category, and choose the date.
+            </p>
+
+            <form id="addForm" class="transaction-form">
+                <div class="form-grid">
+                    <div class="field-block">
+                        <label for="inputName">Transaction Name</label>
+                        <input id="inputName" name="inputName" type="text" placeholder="e.g., Paycheck, Groceries" required>
+                    </div>
+
+                    <div class="field-block">
+                        <label for="inputAmount">Amount</label>
+                        <input id="inputAmount" name="inputAmount" type="number" step="0.01" placeholder="e.g., 1500 or -40" required>
+                    </div>
+
+                    <div class="field-block">
+                        <label for="inputCategory">Category</label>
+                        <select id="inputCategory" name="inputCategory" required>
+                            <option value="">Select category</option>
+                            <option value="Income">Income</option>
+                            <option value="Food">Food</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Housing">Housing</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field-block">
+                        <label for="inputDate">Date</label>
+                        <input id="inputDate" name="inputDate" type="date" required>
+                    </div>
+                </div>
+
+                <button class="primary-button" type="submit">Add Transaction</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2024 SimpleBudget. Take control of your finances with ease.</p>
+    </footer>
+</body>
+</html>
