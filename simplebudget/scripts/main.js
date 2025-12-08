@@ -1,11 +1,16 @@
 import { initHomePage, initTransactionsPage } from "./budget.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const page = document.body.dataset.page;
+    const currentPageName = document.body.dataset.page;
 
-    if (page === "home") {
+    const isHomePage = currentPageName === "home";
+    const isTransactionsPage = currentPageName === "transactions";
+
+    if (isHomePage) {
         initHomePage();
-    } else if (page === "transactions") {
+    }
+
+    if (isTransactionsPage) {
         initTransactionsPage();
     }
 });

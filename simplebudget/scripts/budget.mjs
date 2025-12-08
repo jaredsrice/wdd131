@@ -1,63 +1,33 @@
 const STORAGE_KEY = "simplebudget-transactions";
 const SAVINGS_GOAL = 1500;
 
-const defaultTransactions = [
-    {
-        id: 1,
-        name: "Paycheck",
-        amount: 1500.0,
-        category: "Income",
-        date: "2025-02-01"
-    },
-    {
-        id: 2,
-        name: "Groceries",
-        amount: -62.45,
-        category: "Food",
-        date: "2025-02-02"
-    },
-    {
-        id: 3,
-        name: "Gas Station",
-        amount: -40.0,
-        category: "Transportation",
-        date: "2025-02-03"
-    },
-    {
-        id: 4,
-        name: "Rent Payment",
-        amount: -1200.0,
-        category: "Housing",
-        date: "2025-02-01"
-    },
-    {
-        id: 5,
-        name: "Coffee Shop",
-        amount: -8.75,
-        category: "Food",
-        date: "2025-02-03"
-    }
+const defaultTransactionList = [
+    { id: 1, name: "Paycheck", amount: 1500.0, category: "Income", date: "2025-02-01" },
+    { id: 2, name: "Groceries", amount: -62.45, category: "Food", date: "2025-02-02" },
+    { id: 3, name: "Gas Station", amount: -40.0, category: "Transportation", date: "2025-02-03" },
+    { id: 4, name: "Rent Payment", amount: -1200.0, category: "Housing", date: "2025-02-01" },
+    { id: 5, name: "Coffee Shop", amount: -8.75, category: "Food", date: "2025-02-03" }
 ];
 
-function loadTransactions() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) {
-        return [...defaultTransactions];
+function loadTransactionList() {
+    const storedTransactions = localStorage.getItem(STORAGE_KEY);
+
+    if (!storedTransactions) {
+        return [...defaultTransactionList];
     }
 
     try {
-        const parsed = JSON.parse(stored);
-        return Array.isArray(parsed) ? parsed : [...defaultTransactions];
+        return JSON.parse(storedTransactions);
     } catch {
-        return [...defaultTransactions];
+        return [...defaultTransactionList];
     }
 }
 
-function saveTransactions(transactions) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+function saveTransactionList(transactionList) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactionList));
 }
 
-function formatCurrency(amount) {
+function formatCurrencyAmount(amount) {
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD"
@@ -65,216 +35,255 @@ function formatCurrency(amount) {
     return formatter.format(amount);
 }
 
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    if (Number.isNaN(date.getTime())) {
-        return dateString;
-    }
-    return date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-    });
+function formatTransactionDate(dateString) {
+    return dateString;
 }
 
-function getSummary(transactions) {
-    let income = 0;
-    let expenses = 0;
+function computeSummaryValues(transactionList) {
+    let totalIncomeAmount = 0;
+    let totalExpenseAmount = 0;
+    let totalSavingsAmount = 0;
 
-    for (const t of transactions) {
-        if (t.amount > 0) {
-            income += t.amount;
-        } else if (t.amount < 0) {
-            expenses += Math.abs(t.amount);
+    for (const entry of transactionList) {
+        const categoryLower = entry.category.toLowerCase();
+
+        if (categoryLower === "income") {
+            totalIncomeAmount += entry.amount;
+        } else if (categoryLower === "savings") {
+            totalSavingsAmount += entry.amount;
+        } else if (entry.amount < 0) {
+            totalExpenseAmount += Math.abs(entry.amount);
         }
     }
 
-    const balance = income - expenses;
+    const balanceAmount = totalIncomeAmount - totalExpenseAmount - totalSavingsAmount;
 
-    const now = new Date();
+    const currentDate = new Date();
     const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(now.getDate() - 7);
+    oneWeekAgo.setDate(currentDate.getDate() - 7);
 
-    let weeklySpending = 0;
-    const monthlyCategories = new Set();
+    let weeklySpendingTotal = 0;
 
-    for (const t of transactions) {
-        const tDate = new Date(t.date);
-        if (!Number.isNaN(tDate.getTime())) {
-            if (t.amount < 0 && tDate >= oneWeekAgo && tDate <= now) {
-                weeklySpending += Math.abs(t.amount);
-            }
+    for (const entry of transactionList) {
+        const entryDate = new Date(entry.date);
+        const categoryLower = entry.category.toLowerCase();
+
+        if (Number.isNaN(entryDate.getTime()) === false) {
+            const isExpense = entry.amount < 0;
 
             if (
-                t.category.toLowerCase() !== "income" &&
-                tDate.getMonth() === now.getMonth() &&
-                tDate.getFullYear() === now.getFullYear()
+                isExpense &&
+                entryDate >= oneWeekAgo &&
+                entryDate <= currentDate
             ) {
-                monthlyCategories.add(t.category);
+                weeklySpendingTotal += Math.abs(entry.amount);
             }
         }
     }
 
-    const progressRaw = (balance / SAVINGS_GOAL) * 100;
-    const savingsProgress = Math.max(0, Math.min(100, Math.round(progressRaw)));
+    const categorySet = new Set();
+
+    for (const entry of transactionList) {
+        const entryDate = new Date(entry.date);
+        const categoryLower = entry.category.toLowerCase();
+
+        if (Number.isNaN(entryDate.getTime()) === false) {
+            const isRegularCategory =
+                categoryLower !== "income" &&
+                categoryLower !== "savings";
+
+            if (
+                isRegularCategory &&
+                entryDate.getMonth() === currentDate.getMonth() &&
+                entryDate.getFullYear() === currentDate.getFullYear()
+            ) {
+                categorySet.add(entry.category);
+            }
+        }
+    }
+
+    const rawPercent = (totalSavingsAmount / SAVINGS_GOAL) * 100;
+    const savingsPercentage = Math.max(0, Math.min(100, Math.round(rawPercent)));
 
     return {
-        totalIncome: income,
-        totalExpenses: expenses,
-        balance,
-        weeklySpending,
-        categoriesCount: monthlyCategories.size,
-        savingsProgress
+        totalIncomeAmount,
+        totalExpenseAmount,
+        balanceAmount,
+        weeklySpendingTotal,
+        categoryCount: categorySet.size,
+        savingsPercentage
     };
 }
 
-function getUniqueCategories(transactions) {
-    const categories = new Set();
-    for (const t of transactions) {
-        categories.add(t.category);
+function getCategoryList(transactionList) {
+    const categorySet = new Set();
+
+    for (const entry of transactionList) {
+        categorySet.add(entry.category);
     }
-    return Array.from(categories).sort();
+
+    return Array.from(categorySet).sort();
 }
 
 function initHomePage() {
-    const incomeTotal = document.querySelector("#incomeTotal");
-    const expenseTotal = document.querySelector("#expenseTotal");
-    const balanceTotal = document.querySelector("#balanceTotal");
-    const weeklySpending = document.querySelector("#weeklySpending");
-    const categoryCount = document.querySelector("#categoryCount");
-    const savingsPercent = document.querySelector("#savingsPercent");
-    const savingsBar = document.querySelector("#savingsBar");
+    const incomeTotalElement = document.querySelector("#incomeTotal");
+    const expenseTotalElement = document.querySelector("#expenseTotal");
+    const balanceTotalElement = document.querySelector("#balanceTotal");
+    const weeklySpendingElement = document.querySelector("#weeklySpending");
+    const categoryCountElement = document.querySelector("#categoryCount");
+    const savingsPercentElement = document.querySelector("#savingsPercent");
+    const savingsBarElement = document.querySelector("#savingsBar");
 
-    if (!incomeTotal || !expenseTotal || !balanceTotal) {
+    if (!incomeTotalElement) {
         return;
     }
 
-    const transactions = loadTransactions();
-    const summary = getSummary(transactions);
+    const transactionList = loadTransactionList();
+    const summary = computeSummaryValues(transactionList);
 
-    incomeTotal.textContent = formatCurrency(summary.totalIncome);
-    expenseTotal.textContent = formatCurrency(summary.totalExpenses);
-    balanceTotal.textContent = formatCurrency(summary.balance);
+    incomeTotalElement.textContent = formatCurrencyAmount(summary.totalIncomeAmount);
+    expenseTotalElement.textContent = formatCurrencyAmount(summary.totalExpenseAmount);
+    balanceTotalElement.textContent = formatCurrencyAmount(summary.balanceAmount);
+    weeklySpendingElement.textContent = formatCurrencyAmount(summary.weeklySpendingTotal);
+    categoryCountElement.textContent = summary.categoryCount.toString();
 
-    weeklySpending.textContent = formatCurrency(summary.weeklySpending);
-    categoryCount.textContent = summary.categoriesCount.toString();
-
-    savingsPercent.textContent = `${summary.savingsProgress}%`;
-    savingsBar.style.width = `${summary.savingsProgress}%`;
+    savingsPercentElement.textContent = summary.savingsPercentage + "%";
+    savingsBarElement.style.width = summary.savingsPercentage + "%";
 }
 
 function initTransactionsPage() {
-    let transactions = loadTransactions();
+    let transactionList = loadTransactionList();
 
-    const tableBody = document.querySelector("#tableBody");
-    const filterSelect = document.querySelector("#filterSelect");
-    const addForm = document.querySelector("#addForm");
-    const inputName = document.querySelector("#inputName");
-    const inputAmount = document.querySelector("#inputAmount");
-    const inputCategory = document.querySelector("#inputCategory");
-    const inputDate = document.querySelector("#inputDate");
+    const tableBodyElement = document.querySelector("#tableBody");
+    const filterSelectElement = document.querySelector("#filterSelect");
+    const addFormElement = document.querySelector("#addForm");
+    const inputNameElement = document.querySelector("#inputName");
+    const inputAmountElement = document.querySelector("#inputAmount");
+    const inputCategoryElement = document.querySelector("#inputCategory");
+    const inputDateElement = document.querySelector("#inputDate");
 
-    if (!tableBody || !filterSelect || !addForm) {
+    if (!tableBodyElement) {
         return;
     }
 
-    const today = new Date().toISOString().split("T")[0];
-    inputDate.value = today;
+    const todayString = new Date().toISOString().split("T")[0];
+    inputDateElement.value = todayString;
 
-    function buildCategoryFilterOptions() {
-        const categories = getUniqueCategories(transactions);
-        const existing = new Set();
-        filterSelect.querySelectorAll("option").forEach((opt) => {
-            existing.add(opt.value);
+    function populateCategoryFilterOptions() {
+        const categories = getCategoryList(transactionList);
+        const existingOptions = new Set();
+
+        filterSelectElement.querySelectorAll("option").forEach(option => {
+            existingOptions.add(option.value);
         });
 
         for (const category of categories) {
-            if (!existing.has(category)) {
-                const opt = document.createElement("option");
-                opt.value = category;
-                opt.textContent = category;
-                filterSelect.appendChild(opt);
+            if (!existingOptions.has(category)) {
+                const option = document.createElement("option");
+                option.value = category;
+                option.textContent = category;
+                filterSelectElement.appendChild(option);
             }
         }
     }
 
-    function renderTable() {
-        const selected = filterSelect.value;
-        tableBody.innerHTML = "";
+    function renderTransactionTable() {
+        const selectedCategory = filterSelectElement.value;
+        tableBodyElement.innerHTML = "";
 
-        const filtered =
-            selected === "all"
-                ? transactions
-                : transactions.filter((t) => t.category === selected);
+        const displayedList =
+            selectedCategory === "all"
+                ? transactionList
+                : transactionList.filter(entry => entry.category === selectedCategory);
 
-        for (const t of filtered) {
-            const tr = document.createElement("tr");
+        for (const entry of displayedList) {
+            const row = document.createElement("tr");
 
-            const nameTd = document.createElement("td");
-            nameTd.textContent = t.name;
+            const nameCell = document.createElement("td");
+            nameCell.textContent = entry.name;
 
-            const amountTd = document.createElement("td");
-            const isIncome = t.amount > 0;
-            const sign = isIncome ? "+" : "";
-            amountTd.textContent = `${sign}${formatCurrency(t.amount)}`;
-            amountTd.classList.add(isIncome ? "amount-good" : "amount-bad");
+            const amountCell = document.createElement("td");
+            const isIncome = entry.amount > 0;
+            const prefix = isIncome ? "+" : "";
+            amountCell.textContent = prefix + formatCurrencyAmount(entry.amount);
+            amountCell.className = isIncome ? "amount-good" : "amount-bad";
 
-            const catTd = document.createElement("td");
-            const tag = document.createElement("span");
-            tag.className = "category-tag";
-            tag.textContent = t.category;
-            catTd.appendChild(tag);
+            const categoryCell = document.createElement("td");
+            const categoryTagElement = document.createElement("span");
+            categoryTagElement.className = "category-tag";
+            categoryTagElement.textContent = entry.category;
+            categoryCell.appendChild(categoryTagElement);
 
-            const dateTd = document.createElement("td");
-            dateTd.textContent = formatDate(t.date);
+            const dateCell = document.createElement("td");
+            dateCell.textContent = formatTransactionDate(entry.date);
 
-            tr.appendChild(nameTd);
-            tr.appendChild(amountTd);
-            tr.appendChild(catTd);
-            tr.appendChild(dateTd);
+            const removeCell = document.createElement("td");
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.className = "remove-button";
 
-            tableBody.appendChild(tr);
+            removeButton.addEventListener("click", () => {
+                transactionList = transactionList.filter(x => x.id !== entry.id);
+                saveTransactionList(transactionList);
+                renderTransactionTable();
+            });
+
+            removeCell.appendChild(removeButton);
+
+            row.appendChild(nameCell);
+            row.appendChild(amountCell);
+            row.appendChild(categoryCell);
+            row.appendChild(dateCell);
+            row.appendChild(removeCell);
+
+            tableBodyElement.appendChild(row);
         }
     }
 
-    filterSelect.addEventListener("change", () => {
-        renderTable();
+    filterSelectElement.addEventListener("change", () => {
+        renderTransactionTable();
     });
 
-    addForm.addEventListener("submit", (event) => {
+    addFormElement.addEventListener("submit", event => {
         event.preventDefault();
 
-        const name = inputName.value.trim();
-        const amountNumber = Number(inputAmount.value);
-        const category = inputCategory.value;
-        const date = inputDate.value;
+        const nameValue = inputNameElement.value.trim();
+        const amountValue = Number(inputAmountElement.value);
+        const categoryValue = inputCategoryElement.value;
+        const dateValue = inputDateElement.value;
 
-        if (!name || !category || Number.isNaN(amountNumber) || !date) {
+        const invalidInput =
+            !nameValue ||
+            !categoryValue ||
+            Number.isNaN(amountValue) ||
+            !dateValue;
+
+        if (invalidInput) {
             return;
         }
 
-        const newTransaction = {
+        const newTransactionEntry = {
             id: Date.now(),
-            name,
-            amount: amountNumber,
-            category,
-            date
+            name: nameValue,
+            amount: amountValue,
+            category: categoryValue,
+            date: dateValue
         };
 
-        transactions = transactions.filter(t => t.id > 100);
+        transactionList = transactionList.filter(entry => entry.id > 100);
 
-        transactions.push(newTransaction);
-        saveTransactions(transactions);
+        transactionList.push(newTransactionEntry);
+        saveTransactionList(transactionList);
 
-        buildCategoryFilterOptions();
-        renderTable();
+        populateCategoryFilterOptions();
+        renderTransactionTable();
 
-        addForm.reset();
-        inputDate.value = today;
+        addFormElement.reset();
+        inputDateElement.value = todayString;
     });
 
-    buildCategoryFilterOptions();
-    renderTable();
+    populateCategoryFilterOptions();
+    renderTransactionTable();
 }
 
 export { initHomePage, initTransactionsPage };
