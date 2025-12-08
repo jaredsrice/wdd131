@@ -284,6 +284,17 @@ function initTransactionsPage() {
 
     populateCategoryFilterOptions();
     renderTransactionTable();
+
+    const resetButtonElement = document.querySelector("#resetApp");
+    if (resetButtonElement) {
+    resetButtonElement.addEventListener("click", () => {
+        const confirmReset = confirm("Clear all transactions and restore defaults?");
+        if (confirmReset) {
+            localStorage.removeItem("simplebudget-transactions");
+            location.reload();
+        }
+    });
+    }
 }
 
 export { initHomePage, initTransactionsPage };

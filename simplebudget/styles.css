@@ -303,6 +303,22 @@ body {
     transform: translateY(-1px);
 }
 
+/* Reset button */
+.reset-button {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.18s ease-out;
+}
+
+.reset-button:focus-visible {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
 /* Filter card */
 
 .filter-card {
