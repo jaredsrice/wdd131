@@ -14,7 +14,6 @@ function loadTransactionList() {
     const stored = localStorage.getItem(STORAGE_KEY);
 
     if (!stored) {
-        // First visit: load defaults, but DO NOT return them again later
         const defaultsCopy = [...defaultTransactionList];
         localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultsCopy));
         return defaultsCopy;
@@ -279,7 +278,7 @@ function initTransactionsPage() {
         transactionList = transactionList.filter(t => t.id > 6);
         }
 
-        (newTransactionEntry);
+        transactionList.push(newTransactionEntry);
         saveTransactionList(transactionList);
 
 
